@@ -8,9 +8,11 @@ Para levantar en el ambiente local
 # Prerrequisitos
 
 java version 11 
+Maven 3
 
 ## DEVELOPMENT
-Intellij IDEA
+Con Intellij IDEA
+ Resolver las depencias antes de levantar la aplicacion con el idea o ejecutando mvn clean install 
  RUN APLICATION: Boton a la derecha la aplicación: UserRegistrationApplication
 
 Swagger:
