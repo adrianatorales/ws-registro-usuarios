@@ -3,7 +3,7 @@
 
 Registro de usuarios con obtención de token
 
-Para levantar los diferentes ambientes
+Para levantar en el ambiente local
 
 # Prerrequisitos
 
