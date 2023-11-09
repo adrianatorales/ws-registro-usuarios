@@ -1,5 +1,6 @@
 package py.com.evaluacion.ws.registrousuarios.config;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -55,7 +56,20 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, apiError, headers, HttpStatus.BAD_REQUEST, request);
     }
 
-    @ExceptionHandler(value = { Exception.class })
+    @ExceptionHandler(value = { ConstraintViolationException.class })
+    protected ResponseEntity<Object> exceptionConstraintViolationException(
+            ConstraintViolationException ex, WebRequest request) {
+
+        ResponseError response = new ResponseError();
+
+        //response.setCodeStatus(HttpStatus.BAD_REQUEST.toString());
+        response.setMessage("El correo ya registrado");
+
+        return handleExceptionInternal(ex, response,
+                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
+
+   /* @ExceptionHandler(value = { Exception.class })
     protected ResponseEntity<Object> exception(
             Exception ex, WebRequest request) {
 
@@ -68,6 +82,6 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
         return handleExceptionInternal(ex, response,
                 new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
-    }
+    }*/
 
 }
